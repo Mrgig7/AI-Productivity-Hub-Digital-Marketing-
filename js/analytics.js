@@ -3,13 +3,13 @@
  * Google Analytics 4 (gtag.js) Integration
  * 
  * HOW TO SET UP:
- * 1. Replace 'G-XXXXXXXXXX' below with your GA4 Measurement ID
+ * 1. Replace 'G-8ZR0M011HR' below with your GA4 Measurement ID
  * 2. Find it in GA4: Admin > Data Streams > Measurement ID
  * 3. Test: enable DebugView in GA4 and add ?debug_mode=true to URL
  */
 
 // TODO: Replace with your GA4 Measurement ID
-const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+const GA_MEASUREMENT_ID = 'G-8ZR0M011HR';
 const ANALYTICS_DEBUG = GA_MEASUREMENT_ID === 'G-XXXXXXXXXX';
 
 // DataLayer init
