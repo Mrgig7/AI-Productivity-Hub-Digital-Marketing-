@@ -1,0 +1,263 @@
+/* ============================================
+   AI Productivity Hub — Responsive Styles
+   Mobile-First Breakpoints
+   ============================================ */
+
+/* --- Mobile (default) --- */
+@media (max-width: 767px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+
+  .section {
+    padding: var(--space-12) 0;
+  }
+
+  /* Navigation */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 100px var(--space-8) var(--space-8);
+    gap: var(--space-6);
+    transition: right var(--transition-slow);
+    box-shadow: -10px 0 40px rgba(0,0,0,0.3);
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  .nav-links a {
+    font-size: 1.1rem;
+    width: 100%;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: auto;
+    padding: 120px 0 60px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-top: var(--space-10);
+  }
+
+  /* Grids */
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  /* Page Hero */
+  .page-hero {
+    padding: 120px 0 60px;
+  }
+
+  /* Pricing */
+  .pricing-card.featured {
+    transform: none;
+  }
+
+  .pricing-card.featured:hover {
+    transform: translateY(-8px);
+  }
+
+  /* Newsletter */
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: var(--space-4);
+    text-align: center;
+  }
+
+  /* Pomodoro */
+  .pomodoro-display {
+    font-size: 3.5rem;
+  }
+
+  .pomodoro-progress {
+    width: 160px;
+    height: 160px;
+  }
+
+  .pomodoro-progress-inner {
+    width: 130px;
+    height: 130px;
+  }
+
+  /* Priority Matrix */
+  .matrix-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .matrix-input-row {
+    flex-direction: column;
+  }
+
+  /* Study Planner */
+  .planner-grid {
+    grid-template-columns: 60px repeat(7, 1fr);
+    font-size: 0.7rem;
+  }
+
+  .planner-header {
+    padding: var(--space-2);
+    font-size: 0.65rem;
+  }
+
+  /* Tools */
+  .tool-widget {
+    padding: var(--space-6);
+  }
+
+  /* Blog */
+  .blog-card-image {
+    height: 160px;
+  }
+
+  /* Contact */
+  .contact-form {
+    padding: 0;
+  }
+}
+
+/* --- Tablet (768px+) --- */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero h1 {
+    font-size: 2.75rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-stats {
+    gap: var(--space-8);
+  }
+
+  /* Navigation - still hamburger on tablet */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 50%;
+    max-width: 380px;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 100px var(--space-8) var(--space-8);
+    gap: var(--space-6);
+    transition: right var(--transition-slow);
+    box-shadow: -10px 0 40px rgba(0,0,0,0.3);
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .matrix-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* --- Desktop (1024px+) --- */
+@media (min-width: 1024px) {
+  .hamburger {
+    display: none;
+  }
+
+  .nav-links {
+    position: static;
+    width: auto;
+    height: auto;
+    background: none;
+    backdrop-filter: none;
+    flex-direction: row;
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
+/* --- Large Desktop (1280px+) --- */
+@media (min-width: 1280px) {
+  .container {
+    padding: 0 var(--space-8);
+  }
+
+  .hero h1 {
+    font-size: 3.75rem;
+  }
+}
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — AI Productivity Hub</title>
+  <meta name="description" content="Expert articles on AI productivity, deep work, and building better habits with technology.">
+  <meta property="og:title" content="Blog — AI Productivity Hub">
+  <meta property="og:description" content="Expert articles on AI productivity and deep work.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aiproductivityhub.com/blog">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"Blog","description":"Expert articles on AI productivity.","url":"https://aiproductivityhub.com/blog"}
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script src="js/analytics.js" defer></script>
+</head>
+<body>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Our <span class="highlight">Blog</span></h1>
+      <p>Insights, tips, and strategies to help you master productivity with AI.</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="grid-3">
+
+          <!-- Blog Post 1 -->
+          <article class="blog-card animate-on-scroll delay-1" onclick="handleBlogClick('10 AI Productivity Hacks for 2026')">
+            <div class="blog-card-image" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">
+              <span class="blog-icon">🤖</span>
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span>Mar 5, 2026</span>
+                <span>6 min read</span>
+              </div>
+              <h3>10 AI Productivity Hacks for 2026</h3>
+              <p>Discover cutting-edge AI tools and techniques that top performers use to 10x their output without burning out. From smart scheduling to automated task triaging.</p>
+              <span class="read-more">Read More →</span>
+            </div>
+          </article>
+
+          <!-- Blog Post 2 -->
+          <article class="blog-card animate-on-scroll delay-2" onclick="handleBlogClick('The Science of Deep Work')">
+            <div class="blog-card-image" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">
+              <span class="blog-icon">🧠</span>
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span>Feb 28, 2026</span>
+                <span>8 min read</span>
+              </div>
+              <h3>The Science of Deep Work</h3>
+              <p>What neuroscience tells us about focused work, flow states, and how AI tools can help you enter deep work mode faster and stay there longer.</p>
+              <span class="read-more">Read More →</span>
+            </div>
+          </article>
+
+          <!-- Blog Post 3 -->
+          <article class="blog-card animate-on-scroll delay-3" onclick="handleBlogClick('Building Better Habits with AI')">
+            <div class="blog-card-image" style="background:linear-gradient(135deg,#06b6d4,#22d3ee)">
+              <span class="blog-icon">🎯</span>
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <span>Feb 20, 2026</span>
+                <span>5 min read</span>
+              </div>
+              <h3>Building Better Habits with AI</h3>
+              <p>How AI-powered habit tracking goes beyond simple streaks. Learn about adaptive reminders, behavioral patterns, and personalized nudges.</p>
+              <span class="read-more">Read More →</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Newsletter CTA -->
+  <section class="section newsletter-section">
+    <div class="container" style="text-align:center">
+      <div class="animate-on-scroll">
+        <h2 style="color:white">Never Miss a Post</h2>
+        <p style="color:rgba(255,255,255,0.7);max-width:500px;margin:var(--space-4) auto var(--space-8)">Get the latest productivity insights delivered to your inbox every week.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Enter your email" required aria-label="Email address">
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script>
+    function handleBlogClick(title) {
+      if(window.Analytics) Analytics.trackBlogClick(title);
+      showToast('Blog post: ' + title);
+    }
+  </script>
+</body>
+</html>

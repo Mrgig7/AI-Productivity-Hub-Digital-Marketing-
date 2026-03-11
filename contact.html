@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — AI Productivity Hub</title>
+  <meta name="description" content="Get in touch with the AI Productivity Hub team. We'd love to hear from you.">
+  <meta property="og:title" content="Contact Us — AI Productivity Hub">
+  <meta property="og:description" content="Get in touch with the AI Productivity Hub team.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aiproductivityhub.com/contact">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"Contact Us","description":"Get in touch with the AI Productivity Hub team.","url":"https://aiproductivityhub.com/contact"}
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script src="js/analytics.js" defer></script>
+</head>
+<body>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Get in <span class="highlight">Touch</span></h1>
+      <p>Have a question, feedback, or partnership inquiry? We'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="grid-2" style="max-width:900px;margin:0 auto;align-items:start">
+          <!-- Contact Form -->
+          <div class="animate-on-scroll">
+            <h2 style="margin-bottom:var(--space-2)">Send Us a Message</h2>
+            <p style="margin-bottom:var(--space-8)">Fill out the form below and we'll get back to you within 24 hours.</p>
+            <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+              <div class="form-group">
+                <label for="contactName">Full Name</label>
+                <input type="text" id="contactName" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email Address</label>
+                <input type="email" id="contactEmail" placeholder="john@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="contactMessage">Message</label>
+                <textarea id="contactMessage" placeholder="Tell us how we can help..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg w-full">Send Message →</button>
+            </form>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="animate-on-scroll delay-2">
+            <div class="card" style="margin-bottom:var(--space-6)">
+              <div style="font-size:2rem;margin-bottom:var(--space-3)">📧</div>
+              <h4>Email Us</h4>
+              <p style="margin-top:var(--space-2)">hello@aiproductivityhub.com</p>
+            </div>
+            <div class="card" style="margin-bottom:var(--space-6)">
+              <div style="font-size:2rem;margin-bottom:var(--space-3)">💬</div>
+              <h4>Live Chat</h4>
+              <p style="margin-top:var(--space-2)">Available Mon–Fri, 9am–6pm EST</p>
+            </div>
+            <div class="card" style="margin-bottom:var(--space-6)">
+              <div style="font-size:2rem;margin-bottom:var(--space-3)">📍</div>
+              <h4>Office</h4>
+              <p style="margin-top:var(--space-2)">San Francisco, CA<br>United States</p>
+            </div>
+            <div class="card">
+              <div style="font-size:2rem;margin-bottom:var(--space-3)">🐦</div>
+              <h4>Social</h4>
+              <p style="margin-top:var(--space-2)">Follow us @aiproductivityhub<br>for daily tips and updates.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script>
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      if(window.Analytics) Analytics.trackContactSubmitted();
+      document.getElementById('contactForm').reset();
+      showToast('Message sent successfully! We\'ll be in touch soon 🎉');
+    }
+  </script>
+</body>
+</html>

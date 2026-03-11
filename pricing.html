@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — AI Productivity Hub</title>
+  <meta name="description" content="Simple, transparent pricing. Start free, upgrade when you need more power.">
+  <meta property="og:title" content="Pricing — AI Productivity Hub">
+  <meta property="og:description" content="Simple, transparent pricing for AI productivity tools.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aiproductivityhub.com/pricing">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"Pricing","description":"Simple, transparent pricing for AI productivity tools.","url":"https://aiproductivityhub.com/pricing"}
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script src="js/analytics.js" defer></script>
+</head>
+<body>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Simple, Transparent <span class="highlight">Pricing</span></h1>
+      <p>Start free. Upgrade when you need more. No hidden fees, no surprises.</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="grid-3">
+
+          <!-- Free Tier -->
+          <div class="pricing-card animate-on-scroll delay-1">
+            <div class="plan-name">Free</div>
+            <div class="price">$0<span>/mo</span></div>
+            <p style="color:var(--gray-500);font-size:0.9rem;margin-bottom:var(--space-4)">Perfect for getting started</p>
+            <ul class="pricing-features">
+              <li>Pomodoro Timer</li>
+              <li>Priority Matrix</li>
+              <li>Study Planner</li>
+              <li>3 Active Projects</li>
+              <li>Basic Analytics</li>
+              <li>Community Support</li>
+            </ul>
+            <button class="btn btn-outline w-full" onclick="handlePlanSelect('free')">Get Started Free</button>
+          </div>
+
+          <!-- Pro Tier -->
+          <div class="pricing-card featured animate-on-scroll delay-2">
+            <span class="pricing-badge">Most Popular</span>
+            <div class="plan-name">Pro</div>
+            <div class="price">$19<span>/mo</span></div>
+            <p style="color:var(--gray-500);font-size:0.9rem;margin-bottom:var(--space-4)">For power users and teams</p>
+            <ul class="pricing-features">
+              <li>Everything in Free</li>
+              <li>AI Task Prioritization</li>
+              <li>Unlimited Projects</li>
+              <li>Advanced Analytics & Reports</li>
+              <li>Team Collaboration (up to 10)</li>
+              <li>Smart Notifications</li>
+              <li>Custom Workflows</li>
+              <li>Priority Email Support</li>
+            </ul>
+            <button class="btn btn-primary w-full" onclick="handlePlanSelect('pro')">Choose Pro</button>
+          </div>
+
+          <!-- Enterprise Tier -->
+          <div class="pricing-card animate-on-scroll delay-3">
+            <div class="plan-name">Enterprise</div>
+            <div class="price">$49<span>/mo</span></div>
+            <p style="color:var(--gray-500);font-size:0.9rem;margin-bottom:var(--space-4)">For organizations at scale</p>
+            <ul class="pricing-features">
+              <li>Everything in Pro</li>
+              <li>Custom AI Models</li>
+              <li>SSO & Admin Controls</li>
+              <li>Unlimited Team Members</li>
+              <li>API Access</li>
+              <li>Custom Integrations</li>
+              <li>SLA Guarantee (99.9%)</li>
+              <li>Dedicated Account Manager</li>
+            </ul>
+            <button class="btn btn-outline w-full" onclick="handlePlanSelect('enterprise')">Contact Sales</button>
+          </div>
+
+        </div>
+
+        <!-- FAQ Section -->
+        <div style="max-width:700px;margin:var(--space-16) auto 0;text-align:center" class="animate-on-scroll">
+          <h2>Frequently Asked <span class="text-gradient">Questions</span></h2>
+          <div style="text-align:left;margin-top:var(--space-8)">
+            <div class="card" style="margin-bottom:var(--space-4)">
+              <h4>Can I switch plans anytime?</h4>
+              <p style="margin-top:var(--space-2)">Yes! You can upgrade, downgrade, or cancel your plan at any time. Changes take effect at the start of your next billing cycle.</p>
+            </div>
+            <div class="card" style="margin-bottom:var(--space-4)">
+              <h4>Is there a free trial for Pro?</h4>
+              <p style="margin-top:var(--space-2)">Absolutely. Every Pro plan comes with a 14-day free trial. No credit card required to start.</p>
+            </div>
+            <div class="card">
+              <h4>Do you offer student discounts?</h4>
+              <p style="margin-top:var(--space-2)">Yes! Students and educators get 50% off Pro plans. Contact us with your .edu email to get started.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script>
+    function handlePlanSelect(plan) {
+      if(window.Analytics) Analytics.trackPlanSelected(plan);
+      showToast('Great choice! ' + plan.charAt(0).toUpperCase() + plan.slice(1) + ' plan selected 🎉');
+    }
+  </script>
+</body>
+</html>

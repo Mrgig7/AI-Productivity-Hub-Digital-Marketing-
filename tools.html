@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Productivity Tools — AI Productivity Hub</title>
+  <meta name="description" content="Try our free interactive productivity tools: Pomodoro Timer, Task Priority Matrix, and Study Planner.">
+  <meta property="og:title" content="Free Productivity Tools — AI Productivity Hub">
+  <meta property="og:description" content="Interactive AI-powered productivity tools you can use right now.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aiproductivityhub.com/tools">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebPage","name":"Free Productivity Tools","description":"Interactive AI-powered productivity tools.","url":"https://aiproductivityhub.com/tools"}
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script src="js/analytics.js" defer></script>
+</head>
+<body>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Free Productivity <span class="highlight">Tools</span></h1>
+      <p>Interactive tools to boost your focus, organize tasks, and plan your week — right in your browser.</p>
+    </div>
+  </section>
+
+  <main>
+    <!-- Pomodoro Timer -->
+    <section class="section tool-section" id="pomodoro">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <span class="badge">Focus Tool</span>
+          <h2>Pomodoro <span class="text-gradient">Timer</span></h2>
+          <p>Work in focused 25-minute intervals with short breaks. The proven technique to boost deep work sessions.</p>
+        </div>
+        <div class="tool-widget animate-on-scroll" style="max-width:500px;margin:0 auto;text-align:center">
+          <div class="pomodoro-progress" id="pomodoroProgress">
+            <div class="pomodoro-progress-inner">
+              <div class="pomodoro-display" id="pomodoroTime">25:00</div>
+            </div>
+          </div>
+          <div class="pomodoro-controls">
+            <button class="btn btn-primary" id="pomStartBtn" onclick="pomodoroStart()">▶ Start</button>
+            <button class="btn btn-outline" onclick="pomodoroReset()">↺ Reset</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Priority Matrix -->
+    <section class="section tool-section" id="matrix" style="background:var(--gray-50)">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <span class="badge">Organization Tool</span>
+          <h2>Task Priority <span class="text-gradient">Matrix</span></h2>
+          <p>Use the Eisenhower Decision Matrix to categorize tasks by urgency and importance.</p>
+        </div>
+        <div class="tool-widget animate-on-scroll" style="max-width:700px;margin:0 auto">
+          <div class="matrix-input-row">
+            <input type="text" id="matrixInput" placeholder="Enter a task..." aria-label="Task name">
+            <select id="matrixQuadrant" aria-label="Select quadrant">
+              <option value="ui">Urgent & Important</option>
+              <option value="ni">Not Urgent & Important</option>
+              <option value="un">Urgent & Not Important</option>
+              <option value="nn">Not Urgent & Not Important</option>
+            </select>
+            <button class="btn btn-primary btn-sm" onclick="addMatrixTask()">Add</button>
+          </div>
+          <div class="matrix-grid">
+            <div class="matrix-quadrant urgent-important">
+              <h4>🔴 Urgent & Important</h4>
+              <div id="quadrant-ui"></div>
+            </div>
+            <div class="matrix-quadrant not-urgent-important">
+              <h4>🟡 Not Urgent & Important</h4>
+              <div id="quadrant-ni"></div>
+            </div>
+            <div class="matrix-quadrant urgent-not-important">
+              <h4>🔵 Urgent & Not Important</h4>
+              <div id="quadrant-un"></div>
+            </div>
+            <div class="matrix-quadrant not-urgent-not-important">
+              <h4>⚪ Not Urgent & Not Important</h4>
+              <div id="quadrant-nn"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Study Planner -->
+    <section class="section tool-section" id="planner">
+      <div class="container">
+        <div class="section-header animate-on-scroll">
+          <span class="badge">Planning Tool</span>
+          <h2>Weekly Study <span class="text-gradient">Planner</span></h2>
+          <p>Click on time slots to plan your weekly study schedule. Visualize and organize your learning sessions.</p>
+        </div>
+        <div class="tool-widget animate-on-scroll" style="overflow-x:auto">
+          <div class="planner-grid">
+            <!-- Header row -->
+            <div class="planner-header"></div>
+            <div class="planner-header">Mon</div>
+            <div class="planner-header">Tue</div>
+            <div class="planner-header">Wed</div>
+            <div class="planner-header">Thu</div>
+            <div class="planner-header">Fri</div>
+            <div class="planner-header">Sat</div>
+            <div class="planner-header">Sun</div>
+            <!-- 8 AM -->
+            <div class="planner-time">8 AM</div>
+            <div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div>
+            <!-- 9 AM -->
+            <div class="planner-time">9 AM</div>
+            <div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div>
+            <!-- 10 AM -->
+            <div class="planner-time">10 AM</div>
+            <div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div>
+            <!-- 11 AM -->
+            <div class="planner-time">11 AM</div>
+            <div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div>
+            <!-- 12 PM -->
+            <div class="planner-time">12 PM</div>
+            <div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div>
+            <!-- 1 PM -->
+            <div class="planner-time">1 PM</div>
+            <div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div>
+            <!-- 2 PM -->
+            <div class="planner-time">2 PM</div>
+            <div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div>
+            <!-- 3 PM -->
+            <div class="planner-time">3 PM</div>
+            <div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div>
+            <!-- 4 PM -->
+            <div class="planner-time">4 PM</div>
+            <div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div>
+            <!-- 5 PM -->
+            <div class="planner-time">5 PM</div>
+            <div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div><div class="planner-cell"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CTA -->
+  <section class="section newsletter-section">
+    <div class="container" style="text-align:center">
+      <div class="animate-on-scroll">
+        <h2 style="color:white">Want Even More Power?</h2>
+        <p style="color:rgba(255,255,255,0.7);max-width:600px;margin:var(--space-4) auto var(--space-8)">Upgrade to Pro for AI-powered task prioritization, unlimited projects, and advanced analytics.</p>
+        <a href="pricing.html" class="btn btn-primary btn-lg" data-cta="tools-cta-upgrade">Upgrade to Pro →</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/tools.js" defer></script>
+</body>
+</html>
