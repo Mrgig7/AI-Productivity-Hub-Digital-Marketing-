@@ -84,6 +84,23 @@
   <script src="js/components.js" defer></script>
   <script src="js/main.js" defer></script>
   <script>
+    // Track form start (first field focus)
+    (function() {
+      var formStarted = false;
+      document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('contactForm');
+        if(!form) return;
+        form.querySelectorAll('input, textarea').forEach(function(field) {
+          field.addEventListener('focus', function() {
+            if(!formStarted) {
+              formStarted = true;
+              if(window.Analytics) Analytics.trackEvent('form_start', { form_name: 'contact' });
+            }
+          }, { once: false });
+        });
+      });
+    })();
+
     function handleContactSubmit(e) {
       e.preventDefault();
       if(window.Analytics) Analytics.trackContactSubmitted();

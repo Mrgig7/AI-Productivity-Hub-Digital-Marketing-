@@ -1,15 +1,20 @@
 /**
  * AI Productivity Hub — Interactive Tools
  * Pomodoro Timer, Task Priority Matrix, Study Planner
+ * Enhanced with GA4 tool completion & deep engagement tracking
  */
 (function() {
   'use strict';
 
-  // ===== POMODORO TIMER =====
+  // ═════════════════════════════════════════
+  // POMODORO TIMER
+  // ═════════════════════════════════════════
   var pomodoroInterval = null;
-  var pomodoroTime = 25 * 60; // 25 minutes in seconds
+  var pomodoroTime = 25 * 60;
   var pomodoroTotal = 25 * 60;
   var pomodoroRunning = false;
+  var pomodoroSessionCount = parseInt(localStorage.getItem('aph_pomodoro_sessions') || '0');
+  var pomodoroTotalMinutes = parseInt(localStorage.getItem('aph_pomodoro_minutes') || '0');
 
   function formatTime(s) {
     var m = Math.floor(s / 60);
@@ -32,16 +37,31 @@
     pomodoroRunning = true;
     if(window.Analytics) Analytics.trackToolUsed('pomodoro', 'start');
     var btn = document.getElementById('pomStartBtn');
-    if(btn) btn.textContent = '⏸ Pause';
-    btn.onclick = window.pomodoroPause;
+    if(btn) { btn.textContent = '⏸ Pause'; btn.onclick = window.pomodoroPause; }
     pomodoroInterval = setInterval(function() {
       pomodoroTime--;
       updatePomodoroDisplay();
       if(pomodoroTime <= 0) {
         clearInterval(pomodoroInterval);
         pomodoroRunning = false;
-        if(window.Analytics) Analytics.trackToolUsed('pomodoro', 'complete');
-        showToast('Pomodoro complete! Take a break 🎉');
+
+        // Track session completion
+        pomodoroSessionCount++;
+        pomodoroTotalMinutes += 25;
+        localStorage.setItem('aph_pomodoro_sessions', pomodoroSessionCount);
+        localStorage.setItem('aph_pomodoro_minutes', pomodoroTotalMinutes);
+
+        if(window.Analytics) {
+          Analytics.trackToolUsed('pomodoro', 'complete');
+          // Fire deep engagement conversion event
+          Analytics.trackToolCompletion('pomodoro', {
+            session_number: pomodoroSessionCount,
+            total_focus_minutes: pomodoroTotalMinutes,
+            session_duration: 25
+          });
+        }
+
+        showToast('🎉 Pomodoro #' + pomodoroSessionCount + ' complete! Total: ' + pomodoroTotalMinutes + ' min focused');
         pomodoroReset();
       }
     }, 1000);
@@ -65,7 +85,11 @@
     if(btn) { btn.textContent = '▶ Start'; btn.onclick = window.pomodoroStart; }
   };
 
-  // ===== PRIORITY MATRIX =====
+  // ═════════════════════════════════════════
+  // PRIORITY MATRIX
+  // ═════════════════════════════════════════
+  var matrixTaskCounts = { ui: 0, ni: 0, un: 0, nn: 0 };
+
   window.addMatrixTask = function() {
     var input = document.getElementById('matrixInput');
     var select = document.getElementById('matrixQuadrant');
@@ -77,17 +101,43 @@
 
     var div = document.createElement('div');
     div.className = 'matrix-task';
-    div.innerHTML = '<span>' + task + '</span><span class="delete-task" onclick="this.parentElement.remove()">&times;</span>';
+    div.innerHTML = '<span>' + task + '</span><span class="delete-task" onclick="removeMatrixTask(this, \'' + quadrant + '\')">&times;</span>';
     container.appendChild(div);
     input.value = '';
 
-    if(window.Analytics) Analytics.trackToolUsed('priority_matrix', 'add_task');
+    // Track
+    matrixTaskCounts[quadrant]++;
+    var totalTasks = Object.values(matrixTaskCounts).reduce(function(a,b){return a+b;}, 0);
+    if(window.Analytics) {
+      Analytics.trackToolUsed('priority_matrix', 'add_task');
+      // Fire completion event at milestones (5, 10, 20 tasks)
+      if(totalTasks === 5 || totalTasks === 10 || totalTasks === 20) {
+        Analytics.trackToolCompletion('priority_matrix', {
+          total_tasks: totalTasks,
+          urgent_important: matrixTaskCounts.ui,
+          not_urgent_important: matrixTaskCounts.ni,
+          urgent_not_important: matrixTaskCounts.un,
+          not_urgent_not_important: matrixTaskCounts.nn
+        });
+      }
+    }
   };
 
-  // ===== STUDY PLANNER =====
+  window.removeMatrixTask = function(el, quadrant) {
+    el.parentElement.remove();
+    if(matrixTaskCounts[quadrant] > 0) matrixTaskCounts[quadrant]--;
+    if(window.Analytics) Analytics.trackToolUsed('priority_matrix', 'remove_task');
+  };
+
+  // ═════════════════════════════════════════
+  // STUDY PLANNER
+  // ═════════════════════════════════════════
+  var plannerActiveCount = 0;
+
   window.togglePlannerCell = function(cell) {
     cell.classList.toggle('active');
     if(cell.classList.contains('active')) {
+      plannerActiveCount++;
       if(!cell.querySelector('.planner-block')) {
         var block = document.createElement('div');
         block.className = 'planner-block';
@@ -95,13 +145,26 @@
         cell.appendChild(block);
       }
     } else {
+      plannerActiveCount--;
       var b = cell.querySelector('.planner-block');
       if(b) b.remove();
     }
-    if(window.Analytics) Analytics.trackToolUsed('study_planner', cell.classList.contains('active') ? 'add_block' : 'remove_block');
+
+    if(window.Analytics) {
+      Analytics.trackToolUsed('study_planner', cell.classList.contains('active') ? 'add_block' : 'remove_block');
+      // Fire completion at milestones (5, 10, 20 blocks)
+      if(plannerActiveCount === 5 || plannerActiveCount === 10 || plannerActiveCount === 20) {
+        Analytics.trackToolCompletion('study_planner', {
+          total_blocks: plannerActiveCount,
+          estimated_hours: plannerActiveCount
+        });
+      }
+    }
   };
 
-  // Init on DOMContentLoaded
+  // ═════════════════════════════════════════
+  // INIT
+  // ═════════════════════════════════════════
   document.addEventListener('DOMContentLoaded', function() {
     updatePomodoroDisplay();
 
@@ -113,5 +176,13 @@
     document.querySelectorAll('.planner-cell').forEach(function(cell) {
       cell.addEventListener('click', function() { togglePlannerCell(this); });
     });
+
+    // Show session count if returning user
+    if(pomodoroSessionCount > 0) {
+      var display = document.getElementById('pomodoroTime');
+      if(display) {
+        display.title = 'Sessions completed: ' + pomodoroSessionCount + ' | Total focus: ' + pomodoroTotalMinutes + ' min';
+      }
+    }
   });
 })();

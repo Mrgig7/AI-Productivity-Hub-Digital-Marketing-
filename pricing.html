@@ -114,8 +114,41 @@
   <script src="js/components.js" defer></script>
   <script src="js/main.js" defer></script>
   <script>
+    // E-Commerce: Track pricing page view
+    document.addEventListener('DOMContentLoaded', function() {
+      // Fire view_item_list when pricing section is visible
+      if(window.Analytics) Analytics.trackViewPricingPlans();
+
+      // Track hover on pricing cards (view_item)
+      document.querySelectorAll('.pricing-card').forEach(function(card) {
+        var planName = card.querySelector('.plan-name');
+        if(!planName) return;
+        var plan = planName.textContent.trim().toLowerCase();
+        var hoverTracked = false;
+        card.addEventListener('mouseenter', function() {
+          if(!hoverTracked && window.Analytics) {
+            hoverTracked = true;
+            Analytics.trackViewPlan(plan);
+            Analytics.trackPricingEngagement(plan, 'hover');
+          }
+        });
+      });
+
+      // FAQ interaction tracking
+      document.querySelectorAll('.card h4').forEach(function(faq) {
+        faq.style.cursor = 'pointer';
+        faq.addEventListener('click', function() {
+          if(window.Analytics) Analytics.trackFAQInteraction(this.textContent.trim());
+        });
+      });
+    });
+
     function handlePlanSelect(plan) {
-      if(window.Analytics) Analytics.trackPlanSelected(plan);
+      if(window.Analytics) {
+        Analytics.trackPlanSelected(plan);
+        Analytics.trackAddToCart(plan);       // E-commerce: add_to_cart
+        Analytics.trackBeginCheckout(plan);   // E-commerce: begin_checkout
+      }
       showToast('Great choice! ' + plan.charAt(0).toUpperCase() + plan.slice(1) + ' plan selected 🎉');
     }
   </script>
